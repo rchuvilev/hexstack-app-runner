@@ -51,6 +51,22 @@ test('apps whose main is a bundle are detected, and mapped to their source', () 
   assert.strictEqual(e.sourceEntry({}), '.');
 });
 
+test('a .cjs bundle main is detected too (ai-mentat-dejavu)', () => {
+  // The SDK's bundler preserves the entry's extension, and it accepts
+  // electron-main.cjs, so this app's main really is electron-main.bundle.cjs.
+  // A /\.bundle\.js$/ test declared it already-runnable and launched an
+  // artifact that is gitignored and absent on a fresh clone.
+  const pkg = { main: 'electron-main.bundle.cjs', scripts: { bundle: 'node sdk/utils/bundle-electron.js' } };
+  assert.ok(e.needsBundle(pkg));
+  assert.strictEqual(e.sourceEntry(pkg), 'electron-main.cjs');
+  const plan = e.launchPlan(pkg);
+  assert.strictEqual(plan.build, 'bundle');
+  assert.strictEqual(plan.entry, 'electron-main.bundle.cjs');
+  // CONTROL: a plain .cjs main is not a bundle and must be left alone
+  assert.ok(!e.needsBundle({ main: 'electron-main.cjs' }));
+  assert.strictEqual(e.sourceEntry({ main: 'electron-main.cjs' }), 'electron-main.cjs');
+});
+
 test('launch uses the GLOBAL electron binary, never a build artifact', () => {
   const cmd = e.launchCmd('linux', '/apps/x/repo', 'electron-main.js');
   assert.match(cmd, /electron 'electron-main\.js'/);

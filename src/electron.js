@@ -87,19 +87,26 @@ function launchCmd(platform, dir, entry) {
 
 /**
  * Does this app need a bundle step before its `main` exists?
- * True when package.json main names a *.bundle.js that the repo does not track.
+ * True when package.json main names a *.bundle.* that the repo does not track.
+ *
+ * The extension is not always `.js`. The SDK's bundler keeps whatever the
+ * entry used (`outputFor` splices `.bundle` before the existing extension) and
+ * its ENTRY_NAMES accept `electron-main.cjs`, so ai-mentat-dejavu legitimately
+ * declares `main: electron-main.bundle.cjs`. A `\.bundle\.js$` test called that
+ * app "already runnable" and handed Electron a build artifact that is
+ * gitignored and absent on a fresh clone.
  */
 function needsBundle(pkgJson) {
   const main = pkgJson && typeof pkgJson.main === 'string' ? pkgJson.main : '';
-  return /\.bundle\.js$/.test(main);
+  return /\.bundle\.[cm]?js$/.test(main);
 }
 
 /** The entry Electron should be given: the source main when we skip bundling. */
 function sourceEntry(pkgJson) {
   const main = pkgJson && typeof pkgJson.main === 'string' ? pkgJson.main : '';
   if (!main) return '.';
-  // electron-main.bundle.js -> electron-main.js
-  return needsBundle(pkgJson) ? main.replace(/\.bundle\.js$/, '.js') : main;
+  // electron-main.bundle.js -> electron-main.js; .bundle.cjs -> .cjs
+  return needsBundle(pkgJson) ? main.replace(/\.bundle(\.[cm]?js)$/, '$1') : main;
 }
 
 /**
