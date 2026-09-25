@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hexstack-apps/hexstack-app-runner.git"
+    "url": "https://github.com/rchuvilev/hexstack-app-runner.git"
   },
   "scripts": {
     "setup": "node scripts/setup.js",

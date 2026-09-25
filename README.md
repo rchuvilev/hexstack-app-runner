@@ -90,7 +90,7 @@ point a shipped name at your own fork without editing the app.
 GitHub raw when you press **⟳ Refresh list**:
 
 ```
-https://raw.githubusercontent.com/hexstack-apps/hexstack-app-runner/main/base-apps-list.json
+https://raw.githubusercontent.com/rchuvilev/hexstack-app-runner/main/base-apps-list.json
 ```
 
 | when | what happens |
@@ -111,7 +111,7 @@ moment the published list changes, and creates two sources of truth.
   "version": 1,
   "apps": [
     { "name": "ai-mentat-interviews",
-      "url": "https://github.com/hexstack-apps/ai-mentat-interviews.git",
+      "url": "https://github.com/rchuvilev/ai-mentat-interviews.git",
       "description": "…", "electron": 30 }
   ]
 }

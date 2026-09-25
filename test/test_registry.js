@@ -8,13 +8,13 @@ const r = require('../src/registry');
 
 test('accepts the shipped catalogue shape {name: url}', () => {
   const { apps, errors } = parseCatalog(JSON.stringify({
-    'ai-mentat-interviews': 'https://github.com/hexstack-apps/ai-mentat-interviews.git',
-    'ai-mentat-sdk': 'https://github.com/hexstack-apps/ai-mentat-sdk.git',
+    'ai-mentat-interviews': 'https://github.com/rchuvilev/ai-mentat-interviews.git',
+    'ai-mentats-sdk': 'https://github.com/rchuvilev/ai-mentats-sdk.git',
   }));
   assert.strictEqual(errors.length, 0);
   assert.strictEqual(apps.length, 2);
   assert.deepStrictEqual(apps.map(a => a.name).sort(),
-    ['ai-mentat-interviews', 'ai-mentat-sdk']);
+    ['ai-mentat-interviews', 'ai-mentats-sdk']);
   assert.ok(apps.every(a => a.kind === 'remote' && a.source === 'catalog'));
 });
 
@@ -106,11 +106,11 @@ test('actions: remote installs then updates/uninstalls; local only unwires', () 
 /* ── icons ───────────────────────────────────────────────────────────────── */
 
 test('icon urls are derived only for GitHub remotes', () => {
-  const app = { kind: 'remote', url: 'https://github.com/hexstack-apps/ai-mentat-local-studio.git' };
+  const app = { kind: 'remote', url: 'https://github.com/rchuvilev/ai-mentat-local-studio.git' };
   const urls = r.iconUrls(app);
   assert.strictEqual(urls.length, r.ICON_PATHS.length);
   assert.strictEqual(urls[0],
-    'https://raw.githubusercontent.com/hexstack-apps/ai-mentat-local-studio/main/icon.png');
+    'https://raw.githubusercontent.com/rchuvilev/ai-mentat-local-studio/main/icon.png');
   // a wired local path and a non-GitHub remote have no raw URL to build
   assert.deepStrictEqual(r.iconUrls({ kind: 'local', path: '/tmp/x' }), []);
   assert.deepStrictEqual(r.iconUrls({ kind: 'remote', url: 'https://gitlab.com/o/r.git' }), []);
@@ -183,7 +183,7 @@ test('CONTROL: a bogus candidate path really does 404', async (t) => {
   // Proves the test above can fail rather than passing on a lenient fetch.
   let res;
   try {
-    res = await fetch('https://raw.githubusercontent.com/hexstack-apps/ai-mentat-local-studio/main/no-such-icon.png',
+    res = await fetch('https://raw.githubusercontent.com/rchuvilev/ai-mentat-local-studio/main/no-such-icon.png',
       { method: 'HEAD' });
   } catch { return t.skip('no network'); }
   assert.ok(!res.ok, 'a missing raw path must not report ok');

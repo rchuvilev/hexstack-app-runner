@@ -47,7 +47,7 @@ test('the published file parses and lists every ai-mentat app', () => {
 
 test('remote URL points at the repo root file on raw.githubusercontent.com', () => {
   assert.strictEqual(cat.REMOTE_URL,
-    'https://raw.githubusercontent.com/hexstack-apps/hexstack-app-runner/main/base-apps-list.json');
+    'https://raw.githubusercontent.com/rchuvilev/hexstack-app-runner/main/base-apps-list.json');
 });
 
 /* ── refresh ───────────────────────────────────────────────────────────── */

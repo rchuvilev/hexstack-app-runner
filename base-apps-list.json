@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/hexstack-apps/hexstack-app-runner/main/base-apps-list.schema.json",
+  "$schema": "https://raw.githubusercontent.com/rchuvilev/hexstack-app-runner/main/base-apps-list.schema.json",
   "version": 1,
   "updated": "2026-09-07",
   "description": "Canonical list of Hexstack apps installable by hexstack-app-runner. Fetched at runtime from GitHub raw, so adding an app here reaches every installed runner without shipping a new build.",

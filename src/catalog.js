@@ -20,7 +20,7 @@
  */
 'use strict';
 
-const OWNER = 'hexstack-apps';
+const OWNER = 'rchuvilev';
 const REPO = 'hexstack-app-runner';
 const BRANCH = 'main';
 const FILE = 'base-apps-list.json';
