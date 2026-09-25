@@ -1,0 +1,244 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --panel-2: #1e222b;
+  --line: #2a2f3a;
+  --fg: #e6e9ef;
+  --muted: #98a2b3;
+  --accent: #f0b429;
+  --accent-2: #ffd166;
+  --ok: #3ddc97;
+  --warn: #ffb020;
+  --err: #ff6b6b;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 16px 16px;
+  overflow: hidden;
+}
+
+/* ── top bar ─────────────────────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 650;
+  font-size: 16px;
+  letter-spacing: .2px;
+}
+.logo { color: var(--accent); font-size: 20px; }
+
+/* ── panels ──────────────────────────────────────────────────────────────── */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  flex: 0 0 auto;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.panel-head h2 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+}
+.head-actions { display: flex; gap: 6px; }
+.hint { margin: 0 0 10px; color: var(--muted); font-size: 12.5px; }
+.hint code {
+  background: var(--panel-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--accent-2);
+}
+.hint-block {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  background: #241d0e;
+  border: 1px solid #4a3a12;
+  border-radius: 8px;
+  color: var(--accent-2);
+  font-size: 12.5px;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.hidden { display: none !important; }
+
+/* ── prereqs ─────────────────────────────────────────────────────────────── */
+.prereqs { display: flex; flex-wrap: wrap; gap: 8px; }
+.prereq {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12.5px;
+}
+.prereq .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex: 0 0 auto;
+}
+.prereq.ok  .dot { background: var(--ok); box-shadow: 0 0 8px rgba(61,220,151,.5); }
+.prereq.bad .dot { background: var(--err); }
+.prereq .ver { color: var(--muted); font-size: 11.5px; }
+
+/* ── app list ────────────────────────────────────────────────────────────── */
+.app-list { display: flex; flex-direction: column; gap: 8px; max-height: 40vh; overflow: auto; }
+.app-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.app-row.is-installed { border-left-color: var(--ok); }
+.app-icon { width: 34px; height: 34px; flex: 0 0 34px; border-radius: 8px; object-fit: contain; }
+/* No reachable icon (local repo, non-GitHub remote, or every candidate
+   missing). Same box as the image so rows never change height. */
+.app-icon.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.app-info { min-width: 0; flex: 1 1 auto; }
+.app-name { display: flex; align-items: center; gap: 7px; font-weight: 600; }
+.app-src {
+  color: var(--muted);
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 52vw;
+}
+.app-actions { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; flex-wrap: wrap; justify-content: flex-end; }
+.badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.badge-remote { background: #1d2b3a; color: #79b8ff; }
+.badge-local  { background: #2b2338; color: #c9a0ff; }
+.badge-ok     { background: #14301f; color: var(--ok); }
+.empty { color: var(--muted); padding: 14px; text-align: center; }
+
+/* ── buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  background: var(--panel-2);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .06s;
+}
+.btn:hover { background: #262b36; border-color: #3a4150; }
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1a1400;
+  font-weight: 700;
+}
+.btn-primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.btn-danger { color: var(--err); border-color: #4a2224; }
+.btn-danger:hover { background: #2a1618; }
+.btn-ghost { background: transparent; color: var(--muted); }
+.btn-ghost:hover { color: var(--fg); }
+.btn-sm { padding: 5px 10px; font-size: 12.5px; }
+.btn-xs { padding: 4px 8px; font-size: 11.5px; }
+
+/* ── log ─────────────────────────────────────────────────────────────────── */
+.panel-log { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 120px; }
+.log {
+  flex: 1 1 auto;
+  margin: 0;
+  overflow: auto;
+  background: #0b0d11;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #b9c0cc;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.log .cmd  { color: var(--accent-2); }
+.log .ok   { color: var(--ok); }
+.log .warn { color: var(--warn); }
+.log .err  { color: var(--err); }
+
+/* ── dialog ──────────────────────────────────────────────────────────────── */
+dialog {
+  background: var(--panel);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0;
+  width: min(520px, 92vw);
+}
+dialog::backdrop { background: rgba(0,0,0,.6); }
+.wire-form { padding: 18px 20px 14px; display: flex; flex-direction: column; gap: 12px; }
+.wire-form h3 { margin: 0; font-size: 16px; }
+.wire-form label { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--muted); }
+.wire-form input[type="text"], .wire-form input:not([type]) {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-size: 13px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.wire-form input:focus { outline: none; border-color: var(--accent); }
+.seg { display: flex; gap: 14px; }
+.radio { flex-direction: row !important; align-items: center; gap: 6px !important; color: var(--fg) !important; cursor: pointer; }
+.err { color: var(--err); font-size: 12.5px; margin: 0; }
+.wire-form menu { display: flex; justify-content: flex-end; gap: 8px; margin: 4px 0 0; padding: 0; }

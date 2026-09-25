@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="icons/appIcon.png" />
+  <link rel="stylesheet" href="index.css" />
+  <title>Hexstack App Runner</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⬢</span>
+      <span>Hexstack App Runner</span>
+    </div>
+    <button id="btn-open-data" class="btn btn-primary" title="Open the Hexstack Apps data directory">
+      📂 Open Hexstack Apps data
+    </button>
+  </header>
+
+  <!-- 0) setup -->
+  <section class="panel" id="panel-setup">
+    <div class="panel-head">
+      <h2>0 · Setup</h2>
+      <button id="btn-setup" class="btn">Run setup</button>
+    </div>
+    <p class="hint">
+      Prepares <code>git</code>, <code>node</code> and <code>npm</code>, creates the apps directory,
+      and installs <b>one global Electron</b> used to run every app straight from source — no per-app build.
+    </p>
+    <div class="prereqs" id="prereqs">
+      <div class="prereq" data-tool="git"><span class="dot"></span><b>git</b><span class="ver"></span></div>
+      <div class="prereq" data-tool="node"><span class="dot"></span><b>node</b><span class="ver"></span></div>
+      <div class="prereq" data-tool="npm"><span class="dot"></span><b>npm</b><span class="ver"></span></div>
+      <div class="prereq" data-tool="electron"><span class="dot"></span><b>electron</b><span class="ver"></span></div>
+      <div class="prereq" data-tool="root"><span class="dot"></span><b>apps dir</b><span class="ver"></span></div>
+    </div>
+    <pre id="setup-hint" class="hint-block hidden"></pre>
+  </section>
+
+  <!-- 1) apps -->
+  <section class="panel">
+    <div class="panel-head">
+      <h2>1 · Apps</h2>
+      <div class="head-actions">
+        <button id="btn-wire" class="btn">＋ Wire a repo</button>
+        <button id="btn-refresh" class="btn btn-primary" title="Fetch the published app list and cache it">⟳ Refresh list</button>
+      </div>
+    </div>
+    <div id="app-list" class="app-list"><div class="empty">Loading…</div></div>
+  </section>
+
+  <!-- wire dialog -->
+  <dialog id="wire-dialog">
+    <form method="dialog" class="wire-form">
+      <h3>Wire a repo</h3>
+      <p class="hint">
+        The repo must expose the standard scripts —
+        <code>setup</code>, <code>run</code>, <code>build</code>, <code>check</code> — in its <code>package.json</code>.
+      </p>
+      <label>Name
+        <input id="wire-name" placeholder="my-app" autocomplete="off" />
+      </label>
+      <div class="seg">
+        <label class="radio"><input type="radio" name="wire-kind" value="remote" checked /> Remote (clone)</label>
+        <label class="radio"><input type="radio" name="wire-kind" value="local" /> Local (link)</label>
+      </div>
+      <label id="wire-url-row">Repo URL
+        <input id="wire-url" placeholder="https://github.com/owner/repo.git" autocomplete="off" />
+      </label>
+      <label id="wire-path-row" class="hidden">Local path
+        <input id="wire-path" placeholder="/home/me/dev/my-app" autocomplete="off" />
+      </label>
+      <p class="err hidden" id="wire-err"></p>
+      <menu>
+        <button value="cancel" class="btn btn-ghost">Cancel</button>
+        <button value="ok" id="wire-ok" class="btn btn-primary">Add</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- log -->
+  <section class="panel panel-log">
+    <div class="panel-head">
+      <h2>Output</h2>
+      <button id="btn-clear-log" class="btn btn-ghost">Clear</button>
+    </div>
+    <pre id="log" class="log"></pre>
+  </section>
+
+  <script src="js/neutralino.js"></script>
+  <script src="js/registry.js"></script>
+  <script src="js/commands.js"></script>
+  <script src="js/electron.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

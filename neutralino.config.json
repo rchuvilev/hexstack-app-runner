@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
+  "applicationId": "app.hexstack.app-runner",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "port": 0,
+  "documentRoot": "/resources/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "tokenSecurity": "one-time",
+  "logging": {
+    "enabled": true,
+    "writeToLogFile": true
+  },
+  "nativeAllowList": [
+    "app.*",
+    "os.*",
+    "debug.log",
+    "storage.*",
+    "filesystem.*"
+  ],
+  "globalVariables": {},
+  "modes": {
+    "window": {
+      "title": "Hexstack App Runner",
+      "width": 1100,
+      "height": 860,
+      "minWidth": 760,
+      "minHeight": 560,
+      "center": true,
+      "fullScreen": false,
+      "alwaysOnTop": false,
+      "icon": "/resources/icons/appIcon.png",
+      "enableInspector": false,
+      "borderless": false,
+      "maximize": false,
+      "hidden": false,
+      "resizable": true,
+      "exitProcessOnClose": true,
+      "useSavedState": false
+    },
+    "browser": {
+      "nativeBlockList": ["filesystem.*"]
+    },
+    "chrome": {
+      "width": 1100,
+      "height": 860,
+      "args": "--user-agent=\"Neutralinojs chrome mode\"",
+      "nativeBlockList": ["filesystem.*", "os.*"]
+    }
+  },
+  "cli": {
+    "binaryName": "hexstack-app-runner",
+    "resourcesPath": "/resources/",
+    "extensionsPath": "/extensions/",
+    "clientLibrary": "/resources/js/neutralino.js",
+    "binaryVersion": "6.4.0",
+    "clientVersion": "6.4.0"
+  }
+}

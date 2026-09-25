@@ -1,0 +1,64 @@
+{
+  "$schema": "https://raw.githubusercontent.com/hexstack-apps/hexstack-app-runner/main/base-apps-list.schema.json",
+  "version": 1,
+  "updated": "2026-09-07",
+  "description": "Canonical list of Hexstack apps installable by hexstack-app-runner. Fetched at runtime from GitHub raw, so adding an app here reaches every installed runner without shipping a new build.",
+  "apps": [
+    {
+      "name": "ai-mentat-coolify-local",
+      "url": "https://github.com/rchuvilev/ai-mentat-coolify-local.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-coolify-local",
+      "branch": "main",
+      "description": "Run Coolify locally in a Lima VM, managed from a desktop app.",
+      "electron": 44
+    },
+    {
+      "name": "ai-mentat-dejavu",
+      "url": "https://github.com/rchuvilev/ai-mentat-dejavu.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-dejavu",
+      "branch": "main",
+      "description": "Train an image classifier in the browser, persist to IndexedDB, fire webhook/console actions on match.",
+      "electron": 44
+    },
+    {
+      "name": "ai-mentat-interviews",
+      "url": "https://github.com/rchuvilev/ai-mentat-interviews.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-interviews",
+      "branch": "main",
+      "description": "Real-time interview assistant with screen and audio capture.",
+      "electron": 30
+    },
+    {
+      "name": "ai-mentat-local-studio",
+      "url": "https://github.com/rchuvilev/ai-mentat-local-studio.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-local-studio",
+      "branch": "main",
+      "description": "Local generative media studio — images, video, music and speech.",
+      "electron": 44
+    },
+    {
+      "name": "ai-mentat-minecraft",
+      "url": "https://github.com/rchuvilev/ai-mentat-minecraft.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-minecraft",
+      "branch": "main",
+      "description": "Run a Minecraft Bedrock server from a desktop app in three clicks.",
+      "electron": 44
+    },
+    {
+      "name": "ai-mentat-n8n",
+      "url": "https://github.com/rchuvilev/ai-mentat-n8n.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-n8n",
+      "branch": "main",
+      "description": "Self-hosted n8n running locally, with a GUI, tunnel exposure and an MCP server.",
+      "electron": 44
+    },
+    {
+      "name": "ai-mentat-roblox-studio",
+      "url": "https://github.com/rchuvilev/ai-mentat-roblox-studio.git",
+      "homepage": "https://github.com/rchuvilev/ai-mentat-roblox-studio",
+      "branch": "main",
+      "description": "Wires Roblox Studio's MCP server and Rojo into an agent workflow.",
+      "electron": 44
+    }
+  ]
+}

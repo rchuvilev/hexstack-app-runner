@@ -1,0 +1,23 @@
+{
+  "name": "hexstack-app-runner",
+  "productName": "hexstack-app-runner",
+  "version": "1.0.0",
+  "description": "Neutralino desktop launcher that installs, updates and runs Hexstack apps from source using one globally installed Electron.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexstack-apps/hexstack-app-runner.git"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "run": "npm run setup && node scripts/sync-resources.js && neu run",
+    "build": "node scripts/sync-resources.js && neu build --release",
+    "check": "npm run build && node scripts/start-built.js",
+    "sync": "node scripts/sync-resources.js",
+    "test": "node scripts/sync-resources.js --check && node --test test/*.js"
+  },
+  "devDependencies": {
+    "@neutralinojs/neu": "^11.3.1"
+  }
+}

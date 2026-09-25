@@ -1,0 +1,8 @@
+node_modules/
+dist/
+bin/
+.tmp/
+.storage/
+.DS_Store
+resources/_test.html
+resources/js/_stub.js
